@@ -9,7 +9,7 @@ This is a web application that allows users to manage tasks. The application is 
 
 
 ## Available at 
-https://danielogunkoya.com/app/taskmanager/tasks
+https://danielogunkoya.com/app/taskmanager
 
 
 ## Frontend
