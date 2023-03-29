@@ -1,0 +1,60 @@
+<form *ngIf="showAddTask" class="add-form" (ngSubmit)="onSubmit()">
+  <div class="form-control">
+    <label for="text">Title</label>
+    <input
+      type="text"
+      name="title"
+      [(ngModel)]="title"
+      id="text"
+      placeholder="Add Task"
+    />
+  </div>
+  <div class="form-control">
+    <label for="text">Description</label>
+    <input
+      type="text"
+      name="description"
+      [(ngModel)]="description"
+      id="text"
+      placeholder="Add Task Description"
+    />
+    <div class="form-control">
+      <label for="priority">Priority:</label>
+      <select name="priority" [(ngModel)]="priority" >
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option  value="low">Low</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-control">
+    <label for="text">Assign To</label>
+    <input
+      type="text"
+      name="assignTo"
+      [(ngModel)]="assignTo"
+      id="text"
+      placeholder="Add Member of the team to Assign to"
+    />
+  </div>
+  <div class="form-control">
+    <label for="day">Day & Time</label>
+    <input
+    type="date"
+      name="dueDate"
+      [(ngModel)]="dueDate"
+      id="day"
+      placeholder="Due Date"
+    />
+  </div>
+  <div class="form-control form-control-check">
+    <label for="reminder">Set Reminder</label>
+    <input
+      type="checkbox"
+      name="reminder"
+      [(ngModel)]="reminder"
+      id="reminder"
+    />
+  </div>
+  <input type="submit" value="Save Task" class="btn btn-block" />
+</form>

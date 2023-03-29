@@ -1,0 +1,71 @@
+/backend/server/node_modules
+/backend/server/public/build
+/backend/server/public/hot
+/backend/server/public/storage
+/backend/server/storage/*.key
+/backend/server/vendor
+/backend/server/.env
+/backend/server/.env.backup
+/backend/server/.env.production
+/backend/server/.phpunit.result.cache
+/backend/server/Homestead.json
+/backend/server/Homestead.yaml
+/backend/server/auth.json
+/backend/server/npm-debug.log
+/backend/server/yarn-error.log
+/backend/server/.fleet
+/backend/server/.idea
+/backend/server/.vscode
+
+
+
+
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/frontend/dist
+/frontend/tmp
+/frontend/out-tsc
+# Only exists if Bazel was run
+/frontend/bazel-out
+
+# dependencies
+/frontend/node_modules
+
+# profiling files
+/frontendchrome-profiler-events*.json
+/frontendspeed-measure-plugin*.json
+
+# IDEs and editors
+/.idea
+/frontend.project
+/frontend.classpath
+/frontend.c9/
+/frontend*.launch
+/frontend.settings/
+/frontend*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/frontend/.sass-cache
+/frontend/connect.lock
+/frontend/coverage
+/frontend/libpeerconnection.log
+/frontendnpm-debug.log
+/frontendyarn-error.log
+/frontendtestem.log
+/frontend/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+

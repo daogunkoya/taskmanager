@@ -1,0 +1,16 @@
+<div
+  [ngClass]="{ reminder: task.reminder }"
+  class="task"
+  (dblclick)="onToggle(task)"
+>
+  <h3>
+    {{ task.title }}
+    <fa-icon
+      (click)="onDelete(task)"
+      [ngStyle]="{ color: 'red' }"
+      [icon]="faTimes"
+    ></fa-icon>
+  </h3>
+  <p>{{ task.created_at }}</p>
+  <a [routerLink]="['/tasks', task.task_id]">View Details</a>
+</div>
