@@ -20,6 +20,7 @@ return new class extends Migration
             $table->uuid('assigned_to');
             //$table->unsignedBigInteger('assigned_to')->nullable()->default(null); // Set default value for 'assigned_to'
             $table->string('title');
+            $table->string('priority');
             $table->integer('progress')->default(0);;
             $table->text('description');
             $table->enum('status', ['todo', 'in_progress', 'completed']);
