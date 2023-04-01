@@ -17,23 +17,42 @@ class TaskService implements TaskServiceInterface
         $this->task = $task;
     }
 
-    public function  getAllTasks(): array
-    {
 
-        $tasks = $this->task->where('user_id', Auth::id())
-            ->with('assignedUsers')
-            ->select('id as task_id', 'title', 'description', 'due_date', 'status', 'priority', 'created_at')
-            ->orderBy('created_at', 'desc')
-            ->get()
-            ->toArray();
+     public function getAllTasks(?string $status = '', ?string $priority = '', ?string $created_at = ''): array
 
-        $count = count($tasks);
-
-        return [
-            'count' => $count,
-            'tasks' => $tasks
-        ];
-    }
+        {
+            
+            
+            // Create a base query to fetch all tasks for the authenticated user
+            $query = $this->task->where('user_id', Auth::id())
+                ->with('assignedUsers')
+                ->select('id as task_id', 'title', 'description', 'due_date', 'status', 'priority', 'created_at')
+                ->orderBy('created_at', 'desc');
+        
+            // Apply filters if provided
+            if (!empty($status)) {
+                $query = $query->where('status', $status);
+            }
+            if (!empty($priority)) {
+                $query = $query->where('priority', $priority);
+            }
+            if (!empty($created_at)) {
+                $created_at_dt = DateTime::createFromFormat('d/m/Y', $created_at);
+                if ($created_at_dt) {
+                    $query = $query->whereDate('created_at', $created_at_dt->format('Y-m-d'));
+                }
+            }
+        
+            // Execute the query and return the result
+            $tasks = optional($query->get())->toArray();
+            $count = count($tasks);
+            return [
+                'count' => $count,
+                'tasks' => $tasks
+            ];
+        }
+        
+    
 
     public function getTaskById(string $id): ?Task
     {

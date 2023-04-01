@@ -10,6 +10,9 @@ use App\Interfaces\Auth\RegisterServiceInterface;
 use App\Services\Auth\LoginUserService;
 use App\Services\Auth\RegisterUserService;
 
+use App\Services\Task\TaskService;
+use App\Services\Task\TaskServiceInterface;
+
 use Illuminate\Support\Facades\Gate;
 
 
@@ -39,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
         //
         $this->app->bind(LoginServiceInterface::class, LoginUserService::class);
         $this->app->bind(RegisterServiceInterface::class, RegisterUserService::class);
+
+        $this->app->bind(TaskServiceInterface::class, TaskService::class);
     
         $this->registerRolesAndPermissions();
     
