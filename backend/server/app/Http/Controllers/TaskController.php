@@ -3,23 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Services\Task\TaskService;
+//use App\Services\Task\TaskService;
+use App\Services\Task\TaskServiceInterface;
 use Illuminate\Http\Request;
 use Laravel\Passport\Token;
 use App\Models\Task;
 
 class TaskController extends Controller
 {
-    private TaskService $taskService;
+    private TaskServiceInterface $taskService;
 
-    public function __construct(TaskService $taskService)
+    public function __construct(TaskServiceInterface $taskService)
     {
         $this->taskService = $taskService;
     }
 
     public function index(Request $request)
     {
-        $tasks = $this->taskService->getAllTasks();
+            $status = $request->input('status')??NULL;
+            $assigned_to = $request->input('priority')??NULL;
+            $created_at = $request->input('created_by')??NULL;
+    
+        $tasks = $this->taskService->getAllTasks($status, $assigned_to, $created_at);
 
         return response()->json($tasks);
     }
