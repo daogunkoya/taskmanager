@@ -22,7 +22,7 @@ class TaskController extends Controller
     {
             $status = $request->input('status')??NULL;
             $assigned_to = $request->input('priority')??NULL;
-            $created_at = $request->input('created_by')??NULL;
+            $created_at = $request->input('deadline')??NULL;
     
         $tasks = $this->taskService->getAllTasks($status, $assigned_to, $created_at);
 

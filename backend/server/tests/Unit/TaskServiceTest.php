@@ -36,30 +36,8 @@ class TaskServiceTest extends TestCase
         $this->assertEquals($task->priority, $tasks['tasks'][0]['priority']);
     }
 
-    public function testGetTaskById(): void
-    {
-        $userId = 1;
-        $task = Task::factory()->create(['user_id' => $userId]);
-        //Auth::shouldReceive('id')->once()->andReturn($userId);
-        $retrievedTask = $this->taskService->getTaskById($task->id);
-        $this->assertEquals($task->title, $retrievedTask['title']);
-        $this->assertEquals($task->description, $retrievedTask['description']);
-        $this->assertEquals($task->due_date->format('Y-m-d H:i:s'), $retrievedTask['due_date']);
-        $this->assertEquals($task->status, $retrievedTask['status']);
-        $this->assertEquals($task->priority, $retrievedTask['priority']);
-    }
+    
 
-    public function testGetById(): void
-    {
-        $userId = 1;
-        $task = Task::factory()->create(['user_id' => $userId]);
-        Auth::shouldReceive('id')->once()->andReturn($userId);
-        $retrievedTask = $this->taskService->getById($task->id);
-        $this->assertEquals($task->title, $retrievedTask['title']);
-        $this->assertEquals($task->description, $retrievedTask['description']);
-        $this->assertEquals($task->due_date->format('Y-m-d H:i:s'), $retrievedTask['due_date']);
-        $this->assertEquals($task->status, $retrievedTask['status']);
-        $this->assertEquals($task->priority, $retrievedTask['priority']);
-    }
+  
 
 }

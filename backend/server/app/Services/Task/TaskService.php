@@ -37,7 +37,8 @@ class TaskService implements TaskServiceInterface
                 $query = $query->where('priority', $priority);
             }
             if (!empty($created_at)) {
-                $created_at_dt = Carbon::createFromFormat('d/m/Y', $created_at);
+                //$created_at_dt = Carbon::createFromFormat('d/m/Y', $created_at);
+                $created_at_dt = Carbon::createFromFormat('Y-m-d', $created_at);
                 if ($created_at_dt) {
                     $query = $query->whereDate('due_date', $created_at_dt->format('Y-m-d'));
                 }

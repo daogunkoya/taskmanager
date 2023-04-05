@@ -9,24 +9,33 @@ import { DatePipe } from '@angular/common';
 export class FilterComponent {
   @Output() filterChanged = new EventEmitter<any>();
 
-  status: string = '';
-  priority: string = '';
-  deadline: Date ;
+  taskStatuses: string[] = ['todo', 'in_progress', 'completed'];
+  taskPriorities: string[] = ['low', 'medium', 'high'];
+
+  selectedStatus: string = '';
+  selectedPriority: string = '';
+  selectedDeadline: Date ;
 
   constructor( private datePipe: DatePipe) {
 }
 
 
   onSubmit() {
+
+
     const filter = {
-      status: this.status,
-      priority: this.priority,
-      deadline: this.deadline
+      status: this.selectedStatus,
+      priority: this.selectedPriority,
+      deadline: this.selectedDeadline
     }
+    //console.log('filters=', filter)
     this.filterChanged.emit(filter);
   }
 
   onDateChange(date: string) {
-    this.deadline = new Date(date);
+    const formattedDate = this.datePipe.transform(date, 'dd/MM/yyyy');
+    this.selectedDeadline = new Date(formattedDate);
   }
+  
+  
 }

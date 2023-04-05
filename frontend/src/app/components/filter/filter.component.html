@@ -3,24 +3,22 @@
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="status">Status:</label>
-        <select name="status" [(ngModel)]="status">
+        <select class="form-control" name="selectedStatus" [(ngModel)]="selectedStatus">
           <option value="">All</option>
-          <option value="completed">Completed</option>
-          <option value="not-completed">Not Completed</option>
+          <option *ngFor="let status of taskStatuses" [value]="status">{{status}}</option>
         </select>
       </div>
+      
       <div class="form-group">
         <label for="priority">Priority:</label>
-        <select name="priority" [(ngModel)]="priority">
+        <select class="form-control" name="selectedPriority" [(ngModel)]="selectedPriority">
           <option value="">All</option>
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
+          <option *ngFor="let priority of taskPriorities" [value]="priority">{{priority}}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="deadline">Deadline:</label>
-        <input type="date" name="deadline" [(ngModel)]="deadline">
+        <input type="date" name="selectedDeadline" [(ngModel)]="selectedDeadline">
       </div>
       <button type="submit" class="btn btn-primary">Apply Filter</button>
     </form>

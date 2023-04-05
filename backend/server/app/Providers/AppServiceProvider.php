@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 

@@ -62,18 +62,22 @@ export class TaskService {
   }
 
 
-  filterTasks(status: string, priority: string, deadline: string): Observable<Task[]> {
-    let params = {};
+  filterTasks(status: string, priority: string, deadline: string): Observable<TaskApi> {
+    let queryParams = '';
     if (status) {
-      params = {...params, completed: (status === 'completed').toString()};
+      queryParams += `status=${status}&`;
     }
     if (priority) {
-      params = {...params, priority};
+      queryParams += `priority=${priority}&`;
     }
     if (deadline) {
-      params = {...params, due_date: deadline};
+      queryParams += `deadline=${deadline}&`;
     }
-    return this.http.get<Task[]>(this.apiUrl, {params});
+
+    const url = `${this.apiUrl}?${queryParams}`;
+    console.log(url)
+    return this.http.get<TaskApi>(url);
   }
+  
 
 }

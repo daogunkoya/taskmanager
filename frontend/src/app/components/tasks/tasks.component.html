@@ -1,7 +1,7 @@
 <div class="container">
   <app-header></app-header>
   <app-add-task (onAddTask)="addTask($event)"></app-add-task>
-  <app-filter (onFilterTasks)="filterTasks($event)"></app-filter>
+  <app-filter (filterChanged)="filterTasks($event)"></app-filter>
   <app-task-item
     *ngFor="let task of filteredTasks"
     [task]="task"

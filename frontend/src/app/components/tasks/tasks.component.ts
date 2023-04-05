@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/Task.model';
+import { TaskApi } from '../../models/TaskApi.model';
 
 @Component({
   selector: 'app-tasks',
@@ -49,23 +50,37 @@ export class TasksComponent implements OnInit {
 
 
   filterTasks(filterCriteria: { status: string, priority: string, deadline: string }): void {
-    let filtered = this.tasks;
 
-    // filter by status
-    if (filterCriteria.status !== 'all') {
-      filtered = filtered.filter(t => t.status === filterCriteria.status);
-    }
+    const {status = "", priority = "", deadline} = filterCriteria
 
-    // filter by priority
-    if (filterCriteria.priority !== 'all') {
-      filtered = filtered.filter(t => t.priority === filterCriteria.priority);
-    }
+    // let filtered = this.tasks;
 
-    // filter by deadline
-    if (filterCriteria.deadline !== '') {
-      filtered = filtered.filter(t => t.due_date === filterCriteria.deadline);
-    }
+    // // filter by status
+    // if (filterCriteria.status !== 'All') {
+    //   filtered = filtered.filter(t => t.status === filterCriteria.status);
+    // }
 
-    this.filteredTasks = filtered;
+    // // filter by priority
+    // if (filterCriteria.priority !== 'All') {
+    //   filtered = filtered.filter(t => t.priority === filterCriteria.priority);
+    // }
+
+    // // filter by deadline
+    // if (filterCriteria.deadline !== '') {
+    //   filtered = filtered.filter(t => t.due_date === filterCriteria.deadline);
+    // }
+
+    //this.filteredTasks = filtered;
+   
+
+    this.taskService.filterTasks(status, priority, deadline).subscribe((res) =>{
+      console.log('FILTERED-DATA',res )
+      const {count, tasks} = res
+      this.tasks = tasks
+      this.totalTaskCount = count
+      this.filteredTasks = tasks; // initialize filteredTasks with all tasks
+    } );
+
+    
   }
 }
